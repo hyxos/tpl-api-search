@@ -27,12 +27,22 @@ var common = {
         test: /\.jsx?$/,
         loaders: ['babel'],
         include: PATHS.app
-      }
+      },
+        {test: /\.styl$/, loader: "style!css!stylus", include: PATHS.app},
+        {test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: "url-loader?limit=10000&minetype=application/font-woff", include: PATHS.app},
+        {test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: "file-loader", include: PATHS.app}
+      
+       
     ]
   },
   plugins: [
     new HtmlwebpackPlugin({
-      title: 'Kanban app'
+      title: 'TPL-API Search'
+    }),
+    new webpack.ProvidePlugin({
+      $: "jquery",
+      jQuery: "jquery",
+      "Hammer": "hammerjs/hammer"
     })
   ]
 };
